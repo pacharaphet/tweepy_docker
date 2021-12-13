@@ -1,0 +1,31 @@
+version: '3'
+services:
+
+  mongodb:
+    image: mongo
+    ports:
+    - 27018:27017
+
+  postgresdb:
+    image: postgres
+    ports:
+      - 5555:5432
+    environment: 
+      - POSTGRES_USER=pacharaphet
+      - POSTGRES_PASSWORD=001212
+      - POSTGRES_DB=thai_tweets
+
+  tweet_collector:
+    build: tweet_collector/
+    volumes:
+      - ./tweet_collector/:/app
+    depends_on:
+      - mongodb 
+
+  etl:
+    build: etl_job/
+    volumes:
+    - ./etl_job/:/app
+    depends_on: 
+    - mongodb
+    - postgresdb

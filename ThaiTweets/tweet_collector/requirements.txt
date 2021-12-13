@@ -1,0 +1,3 @@
+SQLAlchemy==1.4.25
+tweepy==3.10.0
+pymongo

@@ -1,0 +1,14 @@
+- create .py image with docker build -t <app_name> 
+
+- run image interactively with 
+	winpty docker run -it $PWD:/app/ <app_name> 
+
+setup postgres with: 
+	-docker run -d --name mypg -p 5555:5432 -e POSTGRES_PASSWORD=xxxx postgres
+connect to container from local system: 
+	- docker run -d --name mypg -p 5555:5432 -e POSTGRES_PASSWORD=xxxx postgres
+connect from inside docker 
+	- winpty docker exec -it mypg psql -p 5432 -U postgres
+
+connect to container within docker compose:
+	-psql -U pacharaphet -p 5555 thai_tweets
